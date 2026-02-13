@@ -1,0 +1,787 @@
+/* Labomedia Brand Modern Design - Dark/Rose Theme */
+
+/* --- Palette ---
+   Background Dark: #1A1423
+   Container/Card Dark: #372549
+   Text/Icons Light: #F0EDEE
+   Accent Vivid Pink: #FF6699
+   Accent Dark Pink: #9F004C
+*/
+
+/* 1. Réinitialisation Globale & Style du Conteneur */
+QMainWindow {
+    background-color: #1A1423;
+    color: #F0EDEE;
+}
+
+QDialog {
+    background-color: #372549; /* Lighter background than main window to pop out */
+    color: #F0EDEE;
+    border: 2px solid #FF6699; /* Vivid border */
+    border-radius: 12px;
+}
+
+#dialog_container, #dialog_content {
+    background-color: transparent; /* Let QDialog bg show through */
+    border: none;
+}
+/* Carte de Connexion */
+#login_card {
+    background-color: #1A1423;
+    border: 1px solid #9F004C;
+    border-radius: 12px;
+}
+/* Carte de Chrono */
+#choice_card {
+    background-color: #1A1423;
+    border: 1px solid #9F004C;
+    border-radius: 12px;
+}
+
+#lbl_field_title {
+    border: none; 
+    font-weight: 500;
+    color: #F0EDEE;
+}
+
+QWidget {
+    font-family: "Segoe UI", "Inter", "Roboto", sans-serif;
+    color: #F0EDEE;
+    font-size: 10pt;
+}
+
+/* 2. Style de la Barre Latérale */
+#sidebar {
+    background-color: #372549; 
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-right: 1px solid #9F004C;
+}
+
+#lbl_brand {
+    font-size: 28px;
+    font-weight: 800;
+    color: #FF6699;
+    padding-left: 10px;
+    background-color: transparent;
+}
+
+/* Boutons de menu dans la barre latérale */
+#sidebar_btn {
+    background-color: transparent;
+    color: #F0EDEE; /* Light text */
+    text-align: left;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+#sidebar_btn[collapsed="true"] {
+    text-align: center;
+    padding: 15px 0px; 
+}
+
+
+QScrollArea {
+    background-color: #1A1423;
+    border: none;
+}
+
+
+#sidebar_btn:hover {
+    background-color: rgba(255, 102, 153, 0.1); /* Pink transparent hover */
+    color: #FF6699;
+}
+
+#sidebar_btn:checked {
+    background-color: #FF6699; /* Vivid Accent - Pink */
+    color: #1A1423; /* Dark text on pink for contrast */
+}
+
+#btn_sidebar_logout {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #FF8A80;
+    border: 1px solid rgba(255, 138, 128, 0.3);
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 20px;
+}
+
+#btn_sidebar_logout:hover {
+    background-color: rgba(255, 138, 128, 0.1);
+    border: 1px solid #FF8A80;
+}
+
+/* 3. Zone de contenu & Typographie */
+#content_area {
+    background-color: #1A1423; /* Dark BG */
+}
+
+#lbl_titre {
+    font-size: 32px;
+    font-weight: 700;
+    color: #FF6699; /* Pink Title */
+    margin-bottom: 20px;
+}
+
+#lbl_titre_choice {
+    font-size: 24px;
+    font-weight: 600;
+    color: #FF6699;
+    margin-bottom: 15px;
+}
+
+/* 4. Cartes & Panneaux */
+QFrame, QWidget#page_dashboard, QListView, QListWidget {
+    background-color: #1A1423; /* Fully Dark to blend */
+    border-radius: 16px;
+    color: #F0EDEE; 
+}
+
+#analysis_card, #card, #card_add {
+    background-color: #1A1423; /* Opaque Dark for solid look, no grey fog */
+    border-radius: 20px;
+    border: 1px solid #9F004C; /* Pink Border to define card */
+    
+}
+
+/* 5. Entrées (Input) */
+QLineEdit, QComboBox {
+    background-color: #1A1423; /* Darker than container */
+    border: 2px solid #555;
+    border-radius: 10px;
+    padding: 10px;
+    color: #F0EDEE;
+}
+QLineEdit:focus, QComboBox:focus {
+    border: 2px solid #FF6699; /* Pink focus */
+}
+
+/* Boîte Combinée Moderne */
+#modern_combo, #combo_parents_activites {
+    background-color: #1A1423;
+    border: 1px solid #9F004C;
+    border-radius: 15px;
+    padding: 5px 15px;
+    padding-right: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #FF6699;
+    min-width: 100px;
+}
+#modern_combo:hover {
+    background-color: #2D0C54;
+    border: 1px solid #FF6699;
+}
+#modern_combo::drop-down, #combo_parents_activites::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 30px;
+    border-left-width: 0px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+#modern_combo::down-arrow, #combo_parents_activites::down-arrow {
+    image: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #FF6699;
+    width: 0;
+    height: 0;
+    margin-right: 10px;
+}
+QComboBox QAbstractItemView {
+    border: 1px solid #9F004C;
+    background-color: #372549;
+    selection-background-color: #FF6699;
+    selection-color: #1A1423;
+    outline: none;
+    border-radius: 10px;
+    padding: 5px;
+    color: #F0EDEE;
+}
+
+/* 6. Boutons Généraux */
+QPushButton, #btn_login, #btn_add_activites, #btn_signup {
+    background-color: #FF6699;
+    color: #1A1423; /* Dark Text for readability/swag on pink */
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: 600;
+    border: none;
+}
+QPushButton:hover, #btn_login:hover, #btn_add_activites:hover, #btn_signup:hover {
+    background-color: #ff85b3; /* Lighter pink */
+}
+
+/* Gros Boutons Admin / Tableau de Bord */
+QPushButton#btn_big_menu {
+    background-color: #372549;
+    color: #F0EDEE;
+    border: 1px solid #9F004C;
+    font-size: 16px;
+    height: 60px;
+    text-align: left;
+    padding-left: 20px;
+}
+QPushButton#btn_big_menu:hover {
+    background-color: #9F004C;
+    border: 1px solid #FF6699;
+    color: white;
+}
+
+/* Destructif */
+/* Destructif */
+QPushButton#btn_stop, #btn_delete_user {
+    background-color: #1A1423; 
+    color: #FF5252; 
+    border: 1px solid #FF5252; 
+}
+QPushButton#btn_stop:hover {
+    background-color: rgba(198, 40, 40, 0.1);
+}
+
+/* Lien supprimer (Activités) */
+#btn_delete_activites {
+    background-color: transparent;
+    border: none;
+    color: #FF5252;
+    text-decoration: underline;
+    font-weight: normal;
+    text-align: left;
+    padding-left: 0px;
+}
+#btn_delete_activites:hover {
+    color: #FF8A80;
+}
+
+/* Bouton supprimer projet */
+#btn_delete_project {
+    background-color: transparent;
+    border: 1px solid #FF5252;
+    color: #FF5252;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-weight: 500;
+    font-size: 11px;
+}
+#btn_delete_project:hover {
+    background-color: rgba(255, 82, 82, 0.1);
+    border: 1px solid #FF8A80;
+    color: #FF8A80;
+}
+
+/* Texte Chrono */
+#lbl_chrono {
+    font-size: 90px;
+    font-weight: 200;
+    color: #FF6699; /* Pink Chrono */
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* En cours (Minuteur Actif) */
+#btn_running {
+     background-color: #FFB74D;
+     color: #1A1423;
+}
+
+/* Listes - Sidebar Project */
+#project_sidebar, #sidebar_projects_list {
+    background-color: #372549; /* Sidebar container */
+    border-left: 1px solid #9F004C; 
+    border-radius: 20px;
+}
+QListWidget {
+    border: none;
+    background: transparent;
+    color: #F0EDEE;
+}
+#btn_toggle_sidebar {
+    background-color: transparent;
+    color: #F0EDEE;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+#btn_toggle_sidebar:hover {
+    background-color: #9F004C;
+    color: #F0EDEE;
+}
+
+#lbl_proj {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FF6699;
+    padding-right: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: transparent;
+}
+
+QListWidget::item {
+    background-color: transparent; 
+    border-radius: 10px;
+    margin-bottom: 4px;
+    padding: 10px;
+    border: 1px solid transparent;
+    color: #F0EDEE;
+}
+QListWidget::item:hover {
+    background-color: rgba(255, 102, 153, 0.1);
+    border: 1px solid #FF6699;
+}
+QListWidget::item:selected {
+    border: 1px solid #FF6699;
+    background-color: #9F004C;
+    color: #FFFFFF;
+}
+
+/* Specific styling for the list itself inside the sidebar logic */
+#sidebar_projects_list {
+    background-color: #261a33; /* Slightly lighter than main bg */
+    border: 1px solid #9F004C;
+}
+
+/* 7. Boutons Texte Spéciaux */
+#btn_add_text {
+    text-align: right;
+    color: #FF6699; 
+    font-weight: bold;
+    font-size: 13px;
+    border: none;
+    background: transparent;
+    padding-bottom: 5px;
+}
+#btn_add_text:hover {
+    color: #ff99cc;
+}
+
+#btn_delete_list_item {
+    text-align: right;
+    color: #FF5252; /* Red lighter for dark mode */
+    font-weight: bold;
+    font-size: 12px;
+    border: none;
+    background: transparent;
+}
+#btn_delete_list_item:hover {
+    color: #FF8A80;
+    text-decoration: underline; 
+}
+
+/* Liste spécifique dans la Carte d'Analyse */
+#activity_list_widget {
+    background: transparent;
+    border: none;
+    color: #F0EDEE;
+}
+#activity_list_widget::item {
+    border: none;
+    background: transparent;
+    padding: 2px;
+    margin: 0px;
+    border-bottom: 1px solid #555;
+    color: #F0EDEE;
+}
+
+/* 8. Sélecteur de Date Moderne */
+QDateEdit {
+    background-color: #1A1423;
+    border: 1px solid #9F004C;
+    border-radius: 12px;
+    padding: 5px 10px;
+    color: #FF6699;
+    font-weight: 600;
+}
+QDateEdit:hover {
+    background-color: #2D0C54;
+    border: 1px solid #FF6699;
+}
+QDateEdit::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 25px;
+    border-left-width: 0px;
+}
+QDateEdit::down-arrow {
+    image: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #FF6699; 
+    width: 0;
+    height: 0;
+}
+
+/* Popup du Widget Calendrier */
+QCalendarWidget QWidget {
+    background-color: #372549;
+    border-bottom: 1px solid #9F004C;
+    color: #F0EDEE;
+}
+
+/* En-tête */
+QCalendarWidget QToolButton {
+    color: #FF6699;
+    background-color: transparent;
+    font-weight: bold;
+    icon-size: 20px;
+    border: none;
+    border-radius: 5px;
+    margin: 2px;
+}
+QCalendarWidget QToolButton:hover {
+    background-color: #9F004C;
+}
+QCalendarWidget QMenu {
+    background-color: #372549;
+    color: #F0EDEE;
+}
+
+/* Grille des Jours */
+QCalendarWidget QAbstractItemView:enabled {
+    background-color: #372549;
+    selection-background-color: #FF6699; /* Bright Pink */
+    selection-color: #1A1423;
+    color: #F0EDEE;
+    border: none;
+    outline: none;
+}
+QCalendarWidget QAbstractItemView:disabled {
+    color: #666;
+}
+QCalendarWidget QSpinBox {
+    background-color: #1A1423;
+    color: #F0EDEE;
+    border-radius: 5px;
+    margin: 0px;
+}
+
+/* --- Accueil View Cards --- */
+#mini_chrono_card, #recap_card {
+    background-color: #1A1423;
+    border: 1px solid #9F004C;
+    border-radius: 12px;
+}
+
+#lbl_welcome {
+    font-size: 24px; 
+    font-weight: bold; 
+    color: #FF6699; 
+    margin-bottom: 20px;
+}
+
+#lbl_mini_chrono_title {
+    font-weight: bold; 
+    color: #F0EDEE; 
+    font-size: 14px;
+}
+
+#lbl_mini_chrono_time {
+    font-size: 32px; 
+    font-weight: bold; 
+    color: #FFFFFF; 
+    margin: 10px 0;
+}
+
+#lbl_info {
+    color: #AAAAAA;
+}
+
+#lbl_recap_title {
+    font-weight: bold; 
+    color: #FF6699; 
+    font-size: 16px; 
+    margin-bottom: 10px;
+}
+
+#recap_list_widget {
+    border: none; 
+    background: transparent;
+    color: #F0EDEE;
+}
+#recap_list_widget::item {
+    border-bottom: 1px solid #555; 
+    padding: 8px; 
+    color: #F0EDEE;
+}
+
+/* --- Admin List Item --- */
+#admin_item_widget {
+    background-color: #372549;
+    border-radius: 8px;
+    color: #F0EDEE;
+}
+
+#admin_item_label {
+    font-size: 14px;
+    font-weight: 500; 
+    color: #F0EDEE; 
+    border: none;
+    background: transparent;
+}
+
+/* --- Analyses Styles --- */
+#h2_sidebar {
+    font-size: 18px; 
+    font-weight: bold; 
+    color: #FF6699; 
+    margin-bottom: 10px;
+}
+
+#lbl_filter {
+    font-weight: bold; 
+    color: #F0EDEE;
+}
+
+#analysis_date_edit {
+    font-size: 10pt;
+    color: #FF6699;
+}
+#analysis_sep {
+    color: #F0EDEE; 
+    margin: 0 5px;
+}
+
+#analysis_content_area {
+    background-color: #1A1423;
+}
+
+
+#tree_activites {
+    border: none;
+    background-color: #1A1423;
+    color: #F0EDEE;
+}
+#tree_activites::item {
+    height: 50px;
+    border-bottom: 1px solid #372549;
+    padding-left: 5px;
+    color: #F0EDEE;
+}
+#tree_activites::item:hover {
+    background-color: #1A1423;
+}
+#tree_activites::item:selected {
+    background-color: #9F004C;
+    color: #F0EDEE;
+}
+QHeaderView::section {
+    background-color: #372549;
+    border: none;
+    border-bottom: 2px solid #9F004C;
+    padding: 10px;
+    font-weight: bold;
+    color: #FF6699;
+}
+
+
+/* --- Barre de Titre Personnalisée --- */
+#TitleBar {
+    background-color: #1A1423;
+    border-bottom: 2px solid #9F004C;
+}
+
+#custom_dialog {
+    background-color: #372549;
+    border: 2px solid #FF6699;
+    border-radius: 12px;
+}
+
+#msg_dialog {
+    background-color: #1A1423; /* Darker variant */
+    border: 2px solid #FF6699;
+    border-radius: 12px;
+}
+
+#msg_text {
+    color: #F0EDEE;
+    font-size: 14px;
+    background: transparent;
+    padding: 20px;
+}
+
+#shortcut_display {
+    color: #FF6699;
+    font-size: 28px;
+    font-weight: bold;
+    background: transparent;
+    padding: 15px;
+}
+
+
+#DialogTitleBar {
+    background-color: transparent; /* Blends with dialog */
+    border-bottom: none; /* No separator for unified look */
+    min-height: 30px;
+}
+
+#TitleLabel {
+    color: #F0EDEE;
+    font-size: 13px; /* Smaller font */
+    font-weight: bold;
+    padding-left: 10px;
+    background: transparent;
+}
+
+#TitleBar QPushButton, #DialogTitleBar QPushButton {
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    color: #F0EDEE;
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 30px; /* Adjusted width */
+    min-height: 30px;
+}
+
+/* Close button specifically in dialogs */
+#DialogTitleBar #btn_close {
+    background-color: transparent;
+    border: none;
+    color: #F0EDEE;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-height: 30px;
+    padding: 0px;
+}
+
+#DialogTitleBar #btn_close:hover {
+    background-color: #FF5252;
+    color: white;
+}
+
+/* Keep original hover for main window buttons */
+#TitleBar #btn_close:hover {
+    background-color: #FF5252;
+    color: white;
+}
+
+#btn_min:hover, #btn_max:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Checkbox Styling --- */
+QCheckBox {
+    color: #F0EDEE;          /* Texte blanc propre */
+    spacing: 10px;
+    font-size: 14px;
+    padding: 5px;
+}
+QCheckBox::indicator {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #555;
+    background-color: #1A1423;
+    border-radius: 4px;
+}
+QCheckBox::indicator:checked {
+    background-color: #FF6699; /* Pink when checked */
+    border-color: #FF6699;
+}
+QCheckBox::indicator:hover {
+    border-color: #FF6699;
+}
+
+
+
+#dialog_container, #dialog_content {
+    background-color: #1A1423;
+}
+
+/* --- Central Chrono Style --- */
+#chrono_center_bubble {
+    background-color: transparent;
+}
+
+#lbl_time_bubble {
+    color: #F0EDEE;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: "Consolas", "Courier New", monospace;
+    qproperty-alignment: AlignCenter;
+}
+
+#lbl_activity_bubble {
+    color: #FF6699;
+    font-size: 14px;
+    font-weight: bold;
+    qproperty-alignment: AlignCenter;
+}
+
+
+/* Global Tooltip Style */
+QToolTip {
+    background-color: #372549;
+    color: #F0EDEE;
+    border: 1px solid #9F004C;
+    padding: 6px;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+/* --- QMessageBox Styling --- */
+QMessageBox {
+    background-color: #372549;
+    color: #F0EDEE;
+}
+
+QMessageBox QLabel {
+    color: #F0EDEE;
+    font-size: 14px;
+    background: transparent;
+    padding: 10px;
+    min-width: 300px;
+}
+
+QMessageBox QPushButton {
+    background-color: #FF6699;
+    color: #1A1423;
+    border-radius: 8px;
+    padding: 10px 24px;
+    font-weight: 600;
+    border: none;
+    min-width: 90px;
+    min-height: 35px;
+}
+
+QMessageBox QPushButton:hover {
+    background-color: #ff85b3;
+}
+
+/* Bouton par défaut (généralement "Yes" ou "OK") */
+QMessageBox QPushButton:default {
+    background-color: #FF6699;
+    color: #1A1423;
+}
+
+QMessageBox QPushButton:default:hover {
+    background-color: #ff85b3;
+}
+
+/* Bouton secondaire (généralement "No" ou "Cancel") */
+QMessageBox QPushButton:!default {
+    background-color: #1A1423;
+    color: #F0EDEE;
+    border: 1px solid #555;
+}
+
+QMessageBox QPushButton:!default:hover {
+    background-color: #372549;
+    border: 1px solid #FF6699;
+}
+
+/* Icône du QMessageBox */
+QMessageBox QLabel#qt_msgbox_label {
+    padding: 15px;
+}
+
+/* Conteneur des boutons */
+QMessageBox QDialogButtonBox {
+    background: transparent;
+}
