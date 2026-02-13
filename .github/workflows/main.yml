@@ -1,22 +1,29 @@
-name: Build TaskTime Final
+name: TaskTime Final Build
 
 on:
   push:
     branches:
-      - main  # Se lance à CHAQUE push sur la branche principale
-  workflow_dispatch: # Permet aussi de le lancer à la main au cas où
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write # Obligatoire pour créer la Release
 
 jobs:
   build:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest, macos-latest]
         include:
           - os: windows-latest
             platform: Windows
+            output_name: TaskTime_Windows.exe
           - os: macos-latest
             platform: MacOS
+            output_name: TaskTime_MacOS.zip
+          - os: ubuntu-latest
+            platform: Linux
+            output_name: TaskTime_Linux
 
     runs-on: ${{ matrix.os }}
 
@@ -33,20 +40,52 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install PySide6 requests pyinstaller
-          # On installe les librairies en direct pour éviter les soucis de fichier txt au début
 
       - name: Build with PyInstaller
         shell: bash
         run: |
-          # On vérifie si les dossiers existent pour ne pas faire planter le build
+          # Inclusion du CSS et des Assets
           ADD_DATA=""
           [ -d "style" ] && ADD_DATA="$ADD_DATA --add-data style${{ matrix.os == 'windows-latest' && ';' || ':' }}style"
           [ -d "assets" ] && ADD_DATA="$ADD_DATA --add-data assets${{ matrix.os == 'windows-latest' && ';' || ':' }}assets"
           
           pyinstaller --onefile --windowed $ADD_DATA --name "TaskTime_${{ matrix.platform }}" main.py
 
-      - name: Upload Artifact
+      - name: Prepare MacOS App (Zip)
+        if: matrix.os == 'macos-latest'
+        run: |
+          cd dist
+          zip -r TaskTime_MacOS.zip TaskTime_MacOS.app
+
+      - name: Upload Artifacts (Sauvegarde)
         uses: actions/upload-artifact@v4
         with:
-          name: TaskTime-${{ matrix.platform }}
-          path: dist/TaskTime_*
+          name: TaskTime-Final-${{ matrix.platform }}
+          path: |
+            dist/*.exe
+            dist/*.zip
+            dist/TaskTime_Linux
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-artifacts
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0.0-final
+          name: "TaskTime Version Finale"
+          body: "Voici la version finale de TaskTime pour Windows, MacOS et Linux."
+          draft: false
+          prerelease: false
+          files: |
+            all-artifacts/TaskTime-Final-Windows/TaskTime_Windows.exe
+            all-artifacts/TaskTime-Final-MacOS/TaskTime_MacOS.zip
+            all-artifacts/TaskTime-Final-Linux/TaskTime_Linux
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
